@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is your new Kedro project, which was generated using `Kedro 0.15.9` by running:
+This is Kedro project was generated using `Kedro 0.15.9` by running:
 
 ```
 kedro new
@@ -14,7 +14,7 @@ Take a look at the [documentation](https://kedro.readthedocs.io) to get started.
 
 In order to get the best out of the template:
  * Please don't remove any lines from the `.gitignore` file provided
- * Make sure your results can be reproduced by following a data engineering convention, e.g. the one we suggest [here](https://kedro.readthedocs.io/en/stable/06_resources/01_faq.html#what-is-data-engineering-convention)
+ * Make sure the results can be reproduced by following a data engineering convention, e.g. the one we suggest [here](https://kedro.readthedocs.io/en/stable/06_resources/01_faq.html#what-is-data-engineering-convention)
  * Don't commit any data to your repository
  * Don't commit any credentials or local configuration to your repository
  * Keep all credentials or local configuration in `conf/local/`
@@ -31,7 +31,7 @@ kedro install
 
 ## Running Kedro
 
-You can run your Kedro project with:
+You can run the Kedro project with:
 
 ```
 kedro run
@@ -39,7 +39,7 @@ kedro run
 
 ## Testing Kedro
 
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests with the following command:
+Have a look at the file `src/tests/test_run.py` for instructions on how to write tests. You can run tests with the following command:
 
 ```
 kedro test
@@ -50,7 +50,7 @@ To configure the coverage threshold, please have a look at the file `.coveragerc
 
 ### Working with Kedro from notebooks
 
-In order to use notebooks in your Kedro project, you need to install Jupyter:
+In order to use notebooks in the Kedro project, you need to install Jupyter:
 
 ```
 pip install jupyter
@@ -85,7 +85,7 @@ scope: `proj_dir`, `proj_name`, `conf`, `io`, `parameters` and `startup_error`.
 
 #### Converting notebook cells to nodes in a Kedro project
 
-Once you are happy with a notebook, you may want to move your code over into the Kedro project structure for the next stage in your development. This is done through a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#cell-tags) and Kedro CLI commands.
+Once you are happy with a notebook, you may want to move your code over into the Kedro project structure for the next stage of development. This is done through a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#cell-tags) and Kedro CLI commands.
 
 By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`.
 ```
@@ -93,7 +93,7 @@ kedro jupyter convert <filepath_to_my_notebook>
 ```
 > *Note:* The name of the Python file matches the name of the original notebook.
 
-Alternatively, you may want to transform all your notebooks in one go. To this end, you can run the following command to convert all notebook files found in the project root directory and under any of its sub-folders.
+Alternatively, you may want to transform all the notebooks in one go. To this end, you can run the following command to convert all notebook files found in the project root directory and under any of its sub-folders.
 ```
 kedro jupyter convert --all
 ```
@@ -102,7 +102,7 @@ kedro jupyter convert --all
 
 In order to automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
 
-> *Note:* Your output cells will be left intact locally.
+> *Note:* The output cells will be left intact locally.
 
 ## Package the project
 
@@ -116,7 +116,7 @@ After running that, you can find the two packages in `src/dist/`.
 
 ## Building API documentation
 
-To build API docs for your code using Sphinx, run:
+To build API docs for the code using Sphinx, run:
 
 ```
 kedro build-docs
@@ -126,7 +126,7 @@ See your documentation by opening `docs/build/html/index.html`.
 
 ## Building the project requirements
 
-To generate or update the dependency requirements for your project, run:
+To generate or update the dependency requirements for the project, run:
 
 ```
 kedro build-reqs
@@ -134,4 +134,4 @@ kedro build-reqs
 
 This will copy the contents of `src/requirements.txt` into a new file `src/requirements.in` which will be used as the source for `pip-compile`. You can see the output of the resolution by opening `src/requirements.txt`.
 
-After this, if you'd like to update your project requirements, please update `src/requirements.in` and re-run `kedro build-reqs`.
+After this, if you'd like to update the project requirements, please update `src/requirements.in` and re-run `kedro build-reqs`.
