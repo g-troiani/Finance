@@ -1,40 +1,67 @@
-# Copyright 2020 QuantumBlack Visual Analytics Limited
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-# NONINFRINGEMENT. IN NO EVENT WILL THE LICENSOR OR OTHER CONTRIBUTORS
-# BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN
-# ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
-# The QuantumBlack Visual Analytics Limited ("QuantumBlack") name and logo
-# (either separately or in combination, "QuantumBlack Trademarks") are
-# trademarks of QuantumBlack. The License does not grant you any right or
-# license to the QuantumBlack Trademarks. You may not use the QuantumBlack
-# Trademarks or any confusingly similar mark as a trademark for your product,
-#     or use the QuantumBlack Trademarks in any other manner that might cause
-# confusion in the marketplace, including but not limited to in advertising,
-# on websites, or on software.
-#
-# See the License for the specific language governing permissions and
-# limitations under the License.
-"""Example code for the nodes in the example pipeline. This code is meant
-just for illustrating basic Kedro features.
-
-PLEASE DELETE THIS FILE ONCE YOU START WORKING ON YOUR OWN PROJECT!
-"""
-
 from typing import Any, Dict
 
 import pandas as pd
 
+
+def get_stock_data(data:pd.DataFrame, example_sp100: CS) -> Dict[str, Any]:
+	# '~/Desktop/g`troiani~github/Securities-Analysis/data/01_raw/sp100' is the path to sp100 list.
+	#what's the second parameter passed?
+
+"""Node for retrieving list of stocks' data from yahoo finance API"""
+	import time
+	from yahoo_finance import Share
+	import numpy as np
+	import pandas as pd
+	import pandas_datareader.data as web
+	import datetime
+	
+	# read ticker symbols from a file to python symbol list
+	symbol = []
+	with open('~/Desktop/g`troiani~github/Securities-Analysis/data/01_raw/sp100') as f:
+	    for line in f:
+		symbol.append(line.strip())
+	f.close
+
+	# datetime is a Python module
+	end = datetime.datetime.today()
+	start = datetime.date(end.year-3,1,1)
+
+	# set path for csv file
+	path_out = '~/Desktop/g`troiani~github/Securities-Analysis/data/02_intermediate'
+
+	# loop through the Russell3000's tickers
+	i=0
+	while i<len(symbol):
+	    try:
+		df = web.DataReader(symbol[i], 'yahoo', start, end)
+		#df.insert(0,'Symbol',symbol[i])
+		#df = df.drop(['Close'], axis=1)
+		#df = df.drop(['Open'], axis=1)
+		#df = df.drop(['High'], axis=1)
+		#df = df.drop(['Low'], axis=1)
+		#df = df.drop(['Volume'], axis=1)
+		
+		if i == 0:
+		    df.to_csv(path_out+ str(symbol[i])+ '.csv',)
+		    print (i, symbol[i],'data stored')
+		    i=i+1
+		else:
+		    df.to_csv(path_out+str(symbol[i])+ '.csv',mode = 'a',)
+		    print (i, symbol[i],'data stored')
+		    i=i+1
+	    except:
+		print("No data could be stored")
+		print (i,symbol[i])
+		i=i+1
+		continue
+
+
+
+
+'''
+from typing import Any, Dict
+
+import pandas as pd
 
 def split_data(data: pd.DataFrame, example_test_data_ratio: float) -> Dict[str, Any]:
     """Node for splitting the classical Iris data set into training and test
@@ -76,3 +103,4 @@ def split_data(data: pd.DataFrame, example_test_data_ratio: float) -> Dict[str, 
         test_x=test_data_x,
         test_y=test_data_y,
     )
+'''
