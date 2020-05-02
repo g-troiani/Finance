@@ -26,12 +26,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Example code for the nodes in the example pipeline. This code is meant
-just for illustrating basic Kedro features.
+from kedro.pipeline import Pipeline, node
 
-Delete this when you start working on your own Kedro project.
+from .nodes import split_data
+
+
+def create_pipeline(**kwargs):
+    return Pipeline(
+        [
+            node(
+                get_stock_data.
+                ["sp100", ],
+                ),
+        ],
+    )
+
+                                    
+            
+                
+
+
+
 """
-
 from kedro.pipeline import Pipeline, node
 
 from .nodes import split_data
@@ -52,3 +68,4 @@ def create_pipeline(**kwargs):
             )
         ]
     )
+"""
